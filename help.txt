@@ -1,0 +1,12 @@
+https://coursetro.com/posts/code/171/Angular-7-Tutorial---Learn-Angular-7-by-Example
+
+ng new todo-app --style=scss
+
+ng generate component addtask
+
+ng generate component viewtask
+
+
+ng generate component deletedtask
+
+ng generate service taskdata
