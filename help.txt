@@ -10,3 +10,5 @@ ng generate component viewtask
 ng generate component deletedtask
 
 ng generate service taskdata
+
+https://stackblitz.com/github/solankepl/todoappng7
