@@ -1,4 +1,4 @@
-h2> View Task</h2>
+<h2> View Task</h2>
 <hr/>
 	<!--<div>
   <span class=" m-1">
@@ -36,13 +36,18 @@ h2> View Task</h2>
 </div>
 
 -->
-<h4 class="pt-2"> Pending Tasks List</h4>
+	<h4 class="pt-2"> Pending Tasks List</h4>
 	<table class="table">
 		<thead>
 			<tr>
 				<th scope="col">ID</th>
 				<th scope="col">Title</th>
-				<th scope="col">&nbsp;</th>
+				<th scope="col">
+					<div class="form-check">
+						<input type="checkbox" class="form-check-input" id="selectAllTask">
+            <label class="form-check-label" for="selectAllTask"></label>
+        </div>
+        </th>
 			</tr>
 		</thead>
 		<tbody>
@@ -51,13 +56,10 @@ h2> View Task</h2>
 				<th scope="row">{{i+1}}</th>
 				<td>{{task.title}}</td>
 				<td>
-          
-<div class="form-check">
-    <input type="checkbox" class="form-check-input" id="{{task.id +'task'}}">
-    <label class="form-check-label" for="{{task.id +'task'}}"></label>
-</div>
-          
-
+          <div class="form-check">
+              <input type="checkbox" class="form-check-input" id="{{task.id +'task'}}">
+              <label class="form-check-label" for="{{task.id +'task'}}"></label>
+          </div>
         </td>
 
 			</tr>
