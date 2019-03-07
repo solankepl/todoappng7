@@ -11,4 +11,6 @@ ng generate component deletedtask
 
 ng generate service taskdata
 
+https://jsonplaceholder.typicode.com/todos
+
 https://stackblitz.com/github/solankepl/todoappng7
