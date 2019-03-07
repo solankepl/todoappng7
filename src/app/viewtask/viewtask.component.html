@@ -1,6 +1,6 @@
-<h2> View Task</h2>
+h2> View Task</h2>
 <hr/>
-<!--<div>
+	<!--<div>
   <span class=" m-1">
     <b>Total Issues: {{totaIssues}}</b>
   </span>
@@ -36,36 +36,31 @@
 </div>
 
 -->
-<table class="table">
-  <thead>
-    <tr>
-      <th scope="col">ID</th>
-      <th scope="col">Description</th>    
-      <th scope="col">Created Date</th>
-      <th scope="col">&nbsp;</th>
-    </tr>
-  </thead>
-  <tbody>
+<h4 class="pt-2"> Pending Tasks List</h4>
+	<table class="table">
+		<thead>
+			<tr>
+				<th scope="col">ID</th>
+				<th scope="col">Title</th>
+				<th scope="col">&nbsp;</th>
+			</tr>
+		</thead>
+		<tbody>
 
-    <!--<tr *ngFor="let issue of issueData | issueFilter: curFilter; let i=index;">
-      <th scope="row">{{issue.id}}</th>
-      <td>{{issue.description}}</td>
-      <td>{{issue.severity}}</td>
-      <td>{{issue.status}}</td>
-      <td>{{issue.createddate}}</td>
-      <td>{{issue.resolveddate}}</td>
+			<tr *ngFor="let task of taskData; let i=index;">
+				<th scope="row">{{i+1}}</th>
+				<td>{{task.title}}</td>
+				<td>
+          
+<div class="form-check">
+    <input type="checkbox" class="form-check-input" id="{{task.id +'task'}}">
+    <label class="form-check-label" for="{{task.id +'task'}}"></label>
+</div>
+          
 
-      <td>
-        <a [routerLink]="['/update', issue.id]">
-          <i class="fa fa-pencil-square" aria-hidden="true"></i>
-        </a>
-      </td>
-      <td>
-        <a href="javascript:void(0);" (click)="deleteIssue(issue.id)">
-          <i class="fa fa-trash" aria-hidden="true"></i>
-        </a>
-      </td>
-    </tr>-->
+        </td>
 
-  </tbody>
-</table>
+			</tr>
+
+		</tbody>
+	</table>
