@@ -40,7 +40,9 @@
 
 	<div class="modal-footer">
 		<h4 class="mr-auto"> Pending Tasks List</h4>
-		<button type="button" class="btn btn-success">Complated</button>
+    <a class="btn btn-primary" routerLink="addtask" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">
+    Add Task</a>
+    <button type="button" class="btn btn-success">Complated</button>
   </div>
   <div class="pl-2 pr-2 table-responsive"> 
 	<table class="table">

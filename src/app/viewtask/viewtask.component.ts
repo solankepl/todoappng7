@@ -10,10 +10,10 @@ export class ViewtaskComponent implements OnInit {
   constructor(private taskDataService:TaskdataService) { }
 
   ngOnInit() {
-    this.getIssuesList();
+    this.getTasksList();
   }
 
-  getIssuesList() {
+  getTasksList() {
     this.taskDataService.getTaskList().subscribe(
       (task:any) => {
          this.taskData = task;

@@ -11,6 +11,8 @@ ng generate component deletedtask
 
 ng generate service taskdata
 
+ng generate module app-routing --flat --module=app
+
 https://jsonplaceholder.typicode.com/todos
 
 https://stackblitz.com/github/solankepl/todoappng7

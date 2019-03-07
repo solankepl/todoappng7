@@ -9,6 +9,7 @@ import { AddtaskComponent } from './addtask/addtask.component';
 import { ViewtaskComponent } from './viewtask/viewtask.component';
 import { DeletedtaskComponent } from './deletedtask/deletedtask.component';
 import { ByfieldPipe } from './shared/byfield.pipe';
+import { AppRoutingModule } from './app-routing.module';
 
 
 @NgModule({
@@ -22,7 +23,10 @@ import { ByfieldPipe } from './shared/byfield.pipe';
   ],
   imports: [
     BrowserModule,
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule,
+    FormsModule,
+    AppRoutingModule
 
   ],
   providers: [],

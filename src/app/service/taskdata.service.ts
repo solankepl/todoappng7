@@ -5,7 +5,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 })
 export class TaskdataService {
 
-private _issuesUrl = '//jsonplaceholder.typicode.com/todos';
+private taskListUrl = '//jsonplaceholder.typicode.com/todos';
   private httpOptions = {
       headers: new HttpHeaders({
         'Content-Type':  'application/json'
@@ -15,7 +15,11 @@ private _issuesUrl = '//jsonplaceholder.typicode.com/todos';
   constructor(private _http: HttpClient) { }
 
   getTaskList() {
-      return this._http.get(this._issuesUrl);
+      return this._http.get(this.taskListUrl);
+  }
+
+  addTask(obj) {
+    return this._http.post(this.taskListUrl, obj, this.httpOptions);
   }
   
 }
