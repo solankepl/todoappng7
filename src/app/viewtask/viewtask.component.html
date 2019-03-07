@@ -1,5 +1,5 @@
 <h2> View Task</h2>
-<hr/>
+
 	<!--<div>
   <span class=" m-1">
     <b>Total Issues: {{totaIssues}}</b>
@@ -36,9 +36,15 @@
 </div>
 
 -->
-	<h4 class="pt-2"> Pending Tasks List</h4>
+
+
+	<div class="modal-footer">
+		<h4 class="mr-auto"> Pending Tasks List</h4>
+		<button type="button" class="btn btn-success">Complated</button>
+  </div>
+  <div class="pl-2 pr-2 table-responsive"> 
 	<table class="table">
-		<thead>
+		<thead class="thead-dark"> 
 			<tr>
 				<th scope="col">ID</th>
 				<th scope="col">Title</th>
@@ -52,12 +58,12 @@
 		</thead>
 		<tbody>
 
-			<tr *ngFor="let task of taskData; let i=index;">
+			<tr *ngFor="let task of taskData | byfield: {completed: 'false'}; let i=index;">
 				<th scope="row">{{i+1}}</th>
 				<td>{{task.title}}</td>
 				<td>
           <div class="form-check">
-              <input type="checkbox" class="form-check-input" id="{{task.id +'task'}}">
+              <input type="checkbox" class="form-check-input" id="{{task.id +'task'}}" [checked]="task.completed" [disabled]="task.completed">
               <label class="form-check-label" for="{{task.id +'task'}}"></label>
           </div>
         </td>
@@ -66,3 +72,41 @@
 
 		</tbody>
 	</table>
+  </div>
+
+<div class="modal-footer pt-2">
+		<h4 class="mr-auto"> Complated Tasks List</h4>
+  </div>
+  <div class="pl-2 pr-2 table-responsive"> 
+	<table class="table">
+		<thead class="thead-dark"> 
+			<tr>
+				<th scope="col">ID</th>
+				<th scope="col">Title</th>
+				<th scope="col">
+					<div class="form-check">
+						<input type="checkbox" class="form-check-input" id="selectAllTask" [checked]="true" [disabled]="true">
+            <label class="form-check-label" for="selectAllTask"></label>
+        </div>
+        </th>
+			</tr>
+		</thead>
+		<tbody>
+
+			<tr *ngFor="let task of taskData | byfield: {completed: true}; let i=index;">
+				<th scope="row">{{i+1}}</th>
+				<td>{{task.title}}</td>
+				<td>
+          <div class="form-check">
+              <input type="checkbox" class="form-check-input" id="{{task.id +'task'}}" [checked]="task.completed" [disabled]="task.completed">
+              <label class="form-check-label" for="{{task.id +'task'}}"></label>
+          </div>
+        </td>
+
+			</tr>
+
+		</tbody>
+	</table>
+  </div>
+
+
