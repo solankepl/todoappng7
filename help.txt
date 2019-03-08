@@ -16,3 +16,5 @@ ng generate module app-routing --flat --module=app
 https://jsonplaceholder.typicode.com/todos
 
 https://stackblitz.com/github/solankepl/todoappng7
+
+https://www.youtube.com/watch?v=QlzX_gKixa4&index=3&list=PLaMbwDs23r4KXoMucJEyUAvamQ-kFNBvC
