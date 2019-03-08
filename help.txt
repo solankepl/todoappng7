@@ -19,6 +19,12 @@ https://stackblitz.com/github/solankepl/todoappng7
 
 https://www.youtube.com/watch?v=QlzX_gKixa4&index=3&list=PLaMbwDs23r4KXoMucJEyUAvamQ-kFNBvC
 
+https://www.mocky.io/
+
+https://beeceptor.com/console/todoapp
+
+https://www.mockapi.io/projects
+
 TODO:
 1. NGRX (action, dispatch, reducers, effects, selectors)
 2. Memoization
