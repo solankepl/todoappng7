@@ -1,48 +1,9 @@
 <h2> View Task</h2>
-
-	<!--<div>
-  <span class=" m-1">
-    <b>Total Issues: {{totaIssues}}</b>
-  </span>
-  <div class="btn-group float-right mb-3" role="group" aria-label="">
-    <a class="btn btn-primary pl-5 pr-5 bg-warning btn-block border-0 rounded-0" routerLink="add" routerLinkActive="active">Add Issues</a>
-    <button type="button" class="btn btn-secondary border-0 rounded-0" (click)="filterShowHide()" >Filter</button>
-  </div>
-</div>
-
-<div class="mt-3" *ngIf= "filterShow">
-  <div class="row m-1">
-    Search By :- &nbsp;
-
-    <div class="form-check form-check-inline">
-      <input class="form-check-input" type="radio" id="inlineRadio1" value="severity" name="serarchBy" [(ngModel)]="serarchBy"
-        (change)="searchOptionClickChange()">
-      <label class="form-check-label" for="inlineRadio1">Severity</label>
-    </div>
-
-    <div class="form-check form-check-inline">
-      <input class="form-check-input" type="radio" id="inlineRadio2" value="status" name="serarchBy" [(ngModel)]="serarchBy" (change)="searchOptionClickChange()">
-      <label class="form-check-label" for="inlineRadio2">Status</label>
-    </div>
-  </div>
-  <div class="input-group mb-3">
-    <select class="custom-select" id="inputGroupSelect02" [(ngModel)]="selectedOption" (change)="onChangeFilterDropDown($event)">
-      <option *ngFor="let item of curFilterOprion" [value]="item">{{item}}</option>
-    </select>
-    <div class="input-group-append">
-      <label class="input-group-text" for="inputGroupSelect02">Search</label>
-    </div>
-  </div>
-</div>
-
--->
-
-
 	<div class="modal-footer">
 		<h4 class="mr-auto"> Pending Tasks List</h4>
     <a class="btn btn-primary" routerLink="addtask" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">
     Add Task</a>
-    <button type="button" class="btn btn-success">Complated</button>
+    <button type="button" class="btn btn-success" (click)="markAsComplated()">Complated</button>
   </div>
   <div class="pl-2 pr-2 table-responsive"> 
 	<table class="table">
@@ -52,7 +13,7 @@
 				<th scope="col">Title</th>
 				<th scope="col">
 					<div class="form-check">
-						<input type="checkbox" class="form-check-input" id="selectAllTask">
+						<input type="checkbox" class="form-check-input" id="selectAllTask" (change)="setAllComplatedTask($event, pendingTask)">
             <label class="form-check-label" for="selectAllTask"></label>
         </div>
         </th>
@@ -60,12 +21,12 @@
 		</thead>
 		<tbody>
 
-			<tr *ngFor="let task of taskData | byfield: {completed: 'false'}; let i=index;">
+			<tr *ngFor="let task of pendingTask; let i=index;">
 				<th scope="row">{{i+1}}</th>
 				<td>{{task.title}}</td>
 				<td>
           <div class="form-check">
-              <input type="checkbox" class="form-check-input" id="{{task.id +'task'}}" [checked]="task.completed" [disabled]="task.completed">
+              <input type="checkbox" class="form-check-input" id="{{task.id +'task'}}" (change)="setComplatedTask($event,task)" [checked]="task.completed">
               <label class="form-check-label" for="{{task.id +'task'}}"></label>
           </div>
         </td>
@@ -95,7 +56,7 @@
 		</thead>
 		<tbody>
 
-			<tr *ngFor="let task of taskData | byfield: {completed: true}; let i=index;">
+			<tr *ngFor="let task of complatedTask | byfield: {completed: true}; let i=index;">
 				<th scope="row">{{i+1}}</th>
 				<td>{{task.title}}</td>
 				<td>
