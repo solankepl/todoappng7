@@ -18,3 +18,11 @@ https://jsonplaceholder.typicode.com/todos
 https://stackblitz.com/github/solankepl/todoappng7
 
 https://www.youtube.com/watch?v=QlzX_gKixa4&index=3&list=PLaMbwDs23r4KXoMucJEyUAvamQ-kFNBvC
+
+TODO:
+1. NGRX (action, dispatch, reducers, effects, selectors)
+2. Memoization
+3. Reverse Proxy
+4. Docker
+5. Unit test for service (mocking, spy)
+6. Put everything in feature.
