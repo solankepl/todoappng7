@@ -44,9 +44,9 @@ export class AddtaskComponent implements OnInit {
 
   addNewTask(obj){
     let lastTaskID = this.taskData[this.taskData.length - 1];
-    let newId = lastTaskID.id + 1;
+    //let newId = lastTaskID.id + 1;
     let newTask= {
-      "id": newId,
+      //"id": newId,
       "userId": 1,
       "title": obj.value.descriptionOfTask,
       "completed": false,      
@@ -55,7 +55,6 @@ export class AddtaskComponent implements OnInit {
       (data:any) =>  this.router.navigate(['viewtask']),
       err => console.log(err)
     );
-
   }
 
 }

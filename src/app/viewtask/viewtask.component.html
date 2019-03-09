@@ -6,7 +6,7 @@
     <button type="button" class="btn btn-success" (click)="markAsComplated()">Complated</button>
   </div>
   <div class="pl-2 pr-2 table-responsive"> 
-	<table class="table">
+	<table class="table  table-sm">
 		<thead class="thead-dark"> 
 			<tr>
 				<th scope="col">ID</th>
@@ -16,7 +16,8 @@
 						<input type="checkbox" class="form-check-input" id="selectAllTask" (change)="setAllComplatedTask($event, pendingTask)">
             <label class="form-check-label" for="selectAllTask"></label>
         </div>
-        </th>
+				</th>
+				<th scope="col"> &nbsp;</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -29,10 +30,9 @@
               <input type="checkbox" class="form-check-input" id="{{task.id +'task'}}" (change)="setComplatedTask($event,task)" [checked]="task.completed">
               <label class="form-check-label" for="{{task.id +'task'}}"></label>
           </div>
-        </td>
-
+				</td>
+				<td scope="col">&nbsp;</td>
 			</tr>
-
 		</tbody>
 	</table>
   </div>
@@ -41,33 +41,33 @@
 		<h4 class="mr-auto"> Complated Tasks List</h4>
   </div>
   <div class="pl-2 pr-2 table-responsive"> 
-	<table class="table">
+	<table class="table  table-sm">
 		<thead class="thead-dark"> 
 			<tr>
-				<th scope="col">ID</th>
+				<th scope="col" >ID</th>
 				<th scope="col">Title</th>
 				<th scope="col">
 					<div class="form-check">
 						<input type="checkbox" class="form-check-input" id="selectAllTask" [checked]="true" [disabled]="true">
             <label class="form-check-label" for="selectAllTask"></label>
         </div>
-        </th>
+				</th>
+				<th scope="col"></th>
 			</tr>
 		</thead>
 		<tbody>
-
 			<tr *ngFor="let task of complatedTask | byfield: {completed: true}; let i=index;">
-				<th scope="row">{{i+1}}</th>
-				<td>{{task.title}}</td>
-				<td>
+				<th  scope="row" >{{i+1}}</th>
+				<td  >{{task.title}}</td>
+				<td  >
           <div class="form-check">
               <input type="checkbox" class="form-check-input" id="{{task.id +'task'}}" [checked]="task.completed" [disabled]="task.completed">
               <label class="form-check-label" for="{{task.id +'task'}}"></label>
-          </div>
-        </td>
-
+					</div>					
+				</td>
+				<td ><button type="button" class="btn btn-danger" (click)="deleteTask(task.id)">Delete</button></td>
 			</tr>
-
+ 
 		</tbody>
 	</table>
   </div>

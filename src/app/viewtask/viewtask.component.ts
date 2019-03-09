@@ -31,15 +31,15 @@ export class ViewtaskComponent implements OnInit {
     this.pendingTask = this.taskData.filter(task => task.completed === false);
   }
 
-setAllComplatedTask(evt, list){
-  //this.pendingTask = this.taskData.map(task => task.completed = true);
-  let setSelected = evt.target.checked
-  
-  list.forEach(function (task) {
-           task.completed = setSelected;
-  });
+  setAllComplatedTask(evt, list){
+    //this.pendingTask = this.taskData.map(task => task.completed = true);
+    let setSelected = evt.target.checked
     
-}
+    list.forEach(function (task) {
+            task.completed = setSelected;
+    });
+      
+  }
 
   setComplatedTask(evt, task) {
     if (evt.target.checked) {
@@ -51,7 +51,7 @@ setAllComplatedTask(evt, list){
       }
     }
     task.completed = evt.target.checked;
-
+    this.updateTask(task);
   }
 
   markAsComplated() {
@@ -64,6 +64,20 @@ setAllComplatedTask(evt, list){
         }
       }
     });*/
+  }
+
+  updateTask(taskObj){   
+    this.taskDataService.updateTask(taskObj.id, taskObj).subscribe(
+      (data:any) => this.getTasksList(),
+      err => console.log(err)
+    );
+  }
+
+  deleteTask(taskId){
+    this.taskDataService.deleteTask(taskId).subscribe(
+      (data:any) => this.getTasksList(),
+      err => console.log(err)
+    )
   }
 
 }
