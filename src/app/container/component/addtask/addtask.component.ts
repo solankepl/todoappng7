@@ -1,7 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, FormsModule } from '@angular/forms';
 import {Router} from "@angular/router";
-import { TaskdataService } from '../../service/taskdata.service';
+//import { TaskdataService } from '../../service/taskdata.service';
+
+import { NgRedux, select } from '@angular-redux/store';
+import { IAppState } from '../../store/store';
+import { ADD_TODO} from '../../actions/action';
+import { ITodo } from '../../interface/todo';
+
 @Component({
   selector: 'app-addtask',
   templateUrl: './addtask.component.html',
@@ -10,28 +16,24 @@ import { TaskdataService } from '../../service/taskdata.service';
 export class AddtaskComponent implements OnInit {
   addTaskForm: FormGroup;
   submitted = false;
-  taskData:Array<any>;
+  @select() todos;
+  model: ITodo = {
+    id: 0,
+    userid: 1,
+    description: "",    
+    completed: false 
+  };
 
-  constructor(private formBuilder: FormBuilder, private router:Router, private taskDataService:TaskdataService ) {}
+  constructor(private formBuilder: FormBuilder, private router:Router, private ngRedux: NgRedux<IAppState> ) {}
 
   ngOnInit() {
     this.addTaskForm = this.formBuilder.group({
-      descriptionOfTask: ['', Validators.required]
+      description: ['', Validators.required]
     }); 
-    this.getTasksList();
-
+   
   }
 
-  getTasksList() {
-    this.taskDataService.getTaskList().subscribe(
-      (task:any) => {
-         this.taskData = task;
-      },
-      err => console.log(err)
-    );
-  }
-
-  // convenience getter for easy access to form fields
+   // convenience getter for easy access to form fields
   get f() { return this.addTaskForm.controls; }
 
   onSubmit() {
@@ -39,22 +41,9 @@ export class AddtaskComponent implements OnInit {
     if (this.addTaskForm.invalid) {
         return;
     }
-    this.addNewTask(this.addTaskForm);
+    this.model.description = this.addTaskForm.value.description;
+    console.log(this.addTaskForm.value.description);
+    this.ngRedux.dispatch({type: ADD_TODO, todo: this.model});
+    this.router.navigate(['viewtask']);
   } 
-
-  addNewTask(obj){
-    let lastTaskID = this.taskData[this.taskData.length - 1];
-    //let newId = lastTaskID.id + 1;
-    let newTask= {
-      //"id": newId,
-      "userId": 1,
-      "title": obj.value.descriptionOfTask,
-      "completed": false,      
-    };
-    this.taskDataService.addTask(newTask).subscribe(
-      (data:any) =>  this.router.navigate(['viewtask']),
-      err => console.log(err)
-    );
-  }
-
 }

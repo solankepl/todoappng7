@@ -4,11 +4,14 @@
 <hr/>
 <form  [formGroup]="addTaskForm" (ngSubmit)="onSubmit()">
     <div class="form-group">
-        <label for="descriptionOfTask">Description</label>
-        <textarea class="form-control" id="descriptionOfTask" formControlName="descriptionOfTask" [ngClass]="{ 'is-invalid': submitted && f.descriptionOfTask.errors }" rows="2"></textarea>
-        <div *ngIf="submitted && f.descriptionOfTask.errors" class="invalid-feedback">
-            <div *ngIf="f.descriptionOfTask.errors.required">Description is required</div>
-        </div>
+        <label for="description">Description</label>
+        <textarea class="form-control" id="description" formControlName="description" [ngClass]="{ 'is-invalid': submitted && f.description.errors }" name="description"   rows="2"></textarea>
+
+        
+          
+        <div *ngIf="submitted && f.description.errors" class="invalid-feedback">
+            <div *ngIf="f.description.errors.required">Description is required</div>
+        </div> 
     </div>
     <button type="submit" class="btn btn-primary mb-2">Add</button>
     </form>

@@ -1,84 +1,30 @@
 import { Component, OnInit } from '@angular/core';
-import { TaskdataService } from '../../service/taskdata.service';
+import { NgRedux, select } from '@angular-redux/store';
+import { IAppState } from '../../store/store';
+import { REMOVE_ALL_TODOS, REMOVE_TODO, TOGGLE_TODO  } from '../../actions/action';
+
+
 @Component({
   selector: 'app-viewtask',
   templateUrl: './viewtask.component.html',
   styleUrls: ['./viewtask.component.scss']
 })
-export class ViewtaskComponent implements OnInit {
-  private taskData: Array<any>;
-  private complatedTask: Array<any>;
-  private pendingTask: Array<any>;
-  private markaAsComplatedTask: Array<number> = new Array();
-  constructor(private taskDataService: TaskdataService) { }
-
+export class ViewtaskComponent implements OnInit { 
+  @select() todos;
+  @select() lastUpdate;
+  constructor(private ngRedux: NgRedux<IAppState>) { }
   ngOnInit() {
-    this.getTasksList();
+ //console.log(this.ngRedux.subscribe.call;
+  }
+  clearTodos() {
+    this.ngRedux.dispatch({type: REMOVE_ALL_TODOS});
   }
 
-  getTasksList() {
-    this.taskDataService.getTaskList().subscribe(
-      (task: any) => {
-        this.taskData = task;
-        this.filterTaskList();
-      },
-      err => console.log(err)
-    );
+  deleteTodo(todo) {
+    this.ngRedux.dispatch({ type: REMOVE_TODO, id: todo.id });
   }
 
-  filterTaskList() {
-    this.complatedTask = this.taskData.filter(task => task.completed === true);
-    this.pendingTask = this.taskData.filter(task => task.completed === false);
+  toggleTodo(todo) {
+    this.ngRedux.dispatch({ type: TOGGLE_TODO, id: todo.id });
   }
-
-  setAllComplatedTask(evt, list){
-    //this.pendingTask = this.taskData.map(task => task.completed = true);
-    let setSelected = evt.target.checked
-    
-    list.forEach(function (task) {
-            task.completed = setSelected;
-    });
-      
-  }
-
-  setComplatedTask(evt, task) {
-    if (evt.target.checked) {
-      this.markaAsComplatedTask.push(task.id);
-    } else {
-      let index = this.markaAsComplatedTask.indexOf(task.id, 0);
-      if (index > -1) {
-        this.markaAsComplatedTask.splice(index, 1);
-      }
-    }
-    task.completed = evt.target.checked;
-    //this.updateTask(task);
-  }
-
-  markAsComplated() {
-    this.filterTaskList();
-    let selectedTaskArray = this.markaAsComplatedTask;
-    this.taskData.forEach(function (task) {
-      for (let i of selectedTaskArray) {
-       if(task.id === i) {
-           task.completed = true;
-           this.updateTask(task);
-        }
-      }
-    });
-  }
-
-  updateTask(taskObj){   
-    this.taskDataService.updateTask(taskObj.id, taskObj).subscribe(
-      (data:any) => this.getTasksList(),
-      err => console.log(err)
-    );
-  }
-
-  deleteTask(taskId){
-    this.taskDataService.deleteTask(taskId).subscribe(
-      (data:any) => this.getTasksList(),
-      err => console.log(err)
-    )
-  }
-
 }

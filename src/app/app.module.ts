@@ -3,6 +3,9 @@ import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
+import { NgRedux, NgReduxModule } from '@angular-redux/store';
+import { IAppState, rootReducer, INITIAL_STATE } from './container/store/store';
+
 import { AppComponent } from './app.component';
 import { ContainerComponent } from './container/container.component';
 import { AddtaskComponent } from './container/component/addtask/addtask.component';
@@ -24,10 +27,16 @@ import { AppRoutingModule } from './app-routing.module';
     HttpClientModule,
     ReactiveFormsModule,
     FormsModule,
+    NgReduxModule,
     AppRoutingModule
 
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+
+export class AppModule {
+  constructor (ngRedux: NgRedux<IAppState>) {
+      ngRedux.configureStore(rootReducer, INITIAL_STATE);
+  }
+}
