@@ -14,7 +14,7 @@ export function rootReducer(state: IAppState, action): IAppState {
           action.todo.id = state.todos.length + 1;    
           return Object.assign({}, state, {
               todos: state.todos.concat(Object.assign({}, action.todo)),
-              lastUpdate: new Date();
+              lastUpdate: new Date()
           })
       
       case TOGGLE_TODO:

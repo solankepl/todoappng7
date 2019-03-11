@@ -3,42 +3,41 @@
 		<h4 class="mr-auto"> Pending Tasks List</h4>
     <a class="btn btn-primary" routerLink="addtask" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">
     Add Task</a>
-    <button type="button" class="btn btn-success" (click)="markAsComplated()">Complated</button>
+    <button type="button" class="btn btn-success" (click)="deleteAllTask()">Delete All</button>
 	</div>
 	
 	
   <div class="pl-2 pr-2 table-responsive"> 
+		
 	<table class="table  table-sm">
 		<thead class="thead-dark"> 
 			<tr>
 				<th scope="col">ID</th>
-				<th scope="col">Title</th>
+				<th scope="col">Description</th>
 				<th scope="col">
-					<div class="form-check">
+					<!--<div class="form-check">
 						<input type="checkbox" class="form-check-input" id="selectAllTask" (change)="setAllComplatedTask($event, pendingTask)">
             <label class="form-check-label" for="selectAllTask"></label>
-        </div>
+        </div>-->
 				</th>
-				<th scope="col"> &nbsp;</th>
 			</tr>
 		</thead>
 		<tbody>
 			
-			<!--<tr *ngFor="let task of todos; let i=index;">
+			<tr *ngFor="let task of todos | async | byfield: { completed: false }; let i=index;">
 				<th scope="row">{{i+1}}</th>
-				<td>{{task.title}}</td>
+				<td>{{task.description}}</td>
 				<td>
-          <div class="form-check">
-              <input type="checkbox" class="form-check-input" id="{{task.id +'task'}}" (change)="setComplatedTask($event,task)" [checked]="task.completed">
+         <div class="form-check">
+              <input type="checkbox" class="form-check-input" id="{{task.id +'task'}}" (change)="setComplatedTask(task)" [checked]="task.completed">
               <label class="form-check-label" for="{{task.id +'task'}}"></label>
           </div>
-				</td>
-				<td scope="col">&nbsp;</td>
-			</tr> -->
+				</td>				
+			</tr> 
 		</tbody>
 	</table>
   </div>
-<!--
+
 <div class="modal-footer pt-2">
 		<h4 class="mr-auto"> Complated Tasks List</h4>
   </div>
@@ -47,31 +46,30 @@
 		<thead class="thead-dark"> 
 			<tr>
 				<th scope="col" >ID</th>
-				<th scope="col">Title</th>
+				<th scope="col">Description</th>
 				<th scope="col">
-					<div class="form-check">
+				<!--	<div class="form-check">
 						<input type="checkbox" class="form-check-input" id="selectAllTask" [checked]="true" [disabled]="true">
             <label class="form-check-label" for="selectAllTask"></label>
-        </div>
+        </div>-->
 				</th>
-				<th scope="col"></th>
 			</tr>
 		</thead>
 		<tbody>
-			<tr *ngFor="let task of complatedTask | byfield: {completed: true}; let i=index;">
+			<tr *ngFor="let task of todos | async | byfield: { completed: true} ; let i=index;">
 				<th  scope="row" >{{i+1}}</th>
-				<td  >{{task.title}}</td>
-				<td  >
-          <div class="form-check">
-              <input type="checkbox" class="form-check-input" id="{{task.id +'task'}}" [checked]="task.completed" [disabled]="task.completed">
-              <label class="form-check-label" for="{{task.id +'task'}}"></label>
-					</div>					
+				<td>{{task.description}}</td>
+				<td>			
+						<!-- <div class="form-check mr-1">
+								<input type="checkbox" class="form-check-input" id="{{task.id +'task'}}" [checked]="task.completed" [disabled]="task.completed">
+								<label class="form-check-label" for="{{task.id +'task'}}"></label>
+						</div>	-->
+						<button type="button" class="btn btn-danger" (click)="deleteTask(task)">Delete</button>
 				</td>
-				<td ><button type="button" class="btn btn-danger" (click)="deleteTask(task.id)">Delete</button></td>
 			</tr>
  
 		</tbody>
 	</table>
   </div>
--->
+
 

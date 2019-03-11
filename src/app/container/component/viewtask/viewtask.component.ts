@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgRedux, select } from '@angular-redux/store';
+
 import { IAppState } from '../../store/store';
 import { REMOVE_ALL_TODOS, REMOVE_TODO, TOGGLE_TODO  } from '../../actions/action';
 
@@ -14,17 +15,21 @@ export class ViewtaskComponent implements OnInit {
   @select() lastUpdate;
   constructor(private ngRedux: NgRedux<IAppState>) { }
   ngOnInit() {
+    this.todos.subscribe(todos =>{
+      todos = todos;
+      console.log(todos);
+    })
  //console.log(this.ngRedux.subscribe.call;
   }
-  clearTodos() {
+  deleteAllTask() {
     this.ngRedux.dispatch({type: REMOVE_ALL_TODOS});
   }
 
-  deleteTodo(todo) {
+  deleteTask(todo) {
     this.ngRedux.dispatch({ type: REMOVE_TODO, id: todo.id });
   }
 
-  toggleTodo(todo) {
+  setComplatedTask(todo) {
     this.ngRedux.dispatch({ type: TOGGLE_TODO, id: todo.id });
   }
 }

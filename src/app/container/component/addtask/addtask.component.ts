@@ -42,7 +42,7 @@ export class AddtaskComponent implements OnInit {
         return;
     }
     this.model.description = this.addTaskForm.value.description;
-    console.log(this.addTaskForm.value.description);
+    console.log(this.todos);
     this.ngRedux.dispatch({type: ADD_TODO, todo: this.model});
     this.router.navigate(['viewtask']);
   } 
