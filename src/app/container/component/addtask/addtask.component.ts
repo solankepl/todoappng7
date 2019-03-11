@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import {Router} from "@angular/router";
-import { TaskdataService } from '../service/taskdata.service';
+import { TaskdataService } from '../../service/taskdata.service';
 @Component({
   selector: 'app-addtask',
   templateUrl: './addtask.component.html',
