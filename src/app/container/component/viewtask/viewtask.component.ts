@@ -51,19 +51,20 @@ export class ViewtaskComponent implements OnInit {
       }
     }
     task.completed = evt.target.checked;
-    this.updateTask(task);
+    //this.updateTask(task);
   }
 
   markAsComplated() {
     this.filterTaskList();
-    /*let selectedTaskArray = this.markaAsComplatedTask;
+    let selectedTaskArray = this.markaAsComplatedTask;
     this.taskData.forEach(function (task) {
       for (let i of selectedTaskArray) {
        if(task.id === i) {
            task.completed = true;
+           this.updateTask(task);
         }
       }
-    });*/
+    });
   }
 
   updateTask(taskObj){   
