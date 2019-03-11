@@ -27,6 +27,8 @@ https://beeceptor.com/console/todoapp
 
 https://www.mockapi.io/projects
 
+
+https://medium.com/codingthesmartway-com-blog/angular-and-redux-ecd22ea53492
 TODO:
 1. NGRX (action, dispatch, reducers, effects, selectors)
 2. Memoization
