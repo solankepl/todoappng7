@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { TaskdataService } from '../service/taskdata.service';
+import { TaskdataService } from '../../service/taskdata.service';
 @Component({
   selector: 'app-viewtask',
   templateUrl: './viewtask.component.html',
