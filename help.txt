@@ -1,5 +1,14 @@
 https://coursetro.com/posts/code/171/Angular-7-Tutorial---Learn-Angular-7-by-Example
 
+https://codesandbox.io/s/710p7wwkvq?from-embed 
+
+https://codesandbox.io/s/simple-scroll-spy-demo-kfs5h /// fine working
+
+
+https://stackblitz.com/edit/angular-scroll-spy?file=app%2Fapp.component.html // plan angualr 2 code 
+https://stackblitz.com/edit/angular-scroll-spy?file=app%2Fapp.component.html //scroll example
+
+
 ng new todo-app --style=scss
 
 ng generate component addtask
